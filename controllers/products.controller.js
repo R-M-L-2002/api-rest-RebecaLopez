@@ -1,9 +1,17 @@
-let productos = [
-    {id:1 , nombre: 'Monitor', precio: 40000},
-    {id:2 , nombre: 'Gabinete', precio: 5000},
+const fs = require('fs')
+const path = require('path')
+const filePath = path.join(__dirname, '../db/productos.json')
 
-]
+const leerProductos = () => {
+    const data = fs.readFileSync(filePath, 'utf8')
+    console.log("productos", data);
 
+    return JSON.parse(data) 
+}
+
+let productos = leerProductos()
+
+console.log("productos", productos)
 
 /* app.get('/productos', (req, res) => {
     res.json({ data: productos, status: 200, message: 'Productos obtenidos de manera exitosa' })
